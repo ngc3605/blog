@@ -1,21 +1,13 @@
 <?php
 
-include_once('model/db.php');
-$sql = "SELECT * FROM article";
-$params = ['title' => '', 'content' => '', 'dt_creat' => ''];
-$query = dbQuery($sql, $params);
+include_once('core/db.php');
+include_once('model/articles.php');
+include_once('model/cat.php');
 
-?>
+$queryCat = getCat();
 
-<div>
-	
-<a href="add.php">Add new article</a>
-<hr>
+$query = getArticles();
 
-<? foreach($query as $value) : ?>
-	<h2><?=$value['title']?></h2>
-	<a href="article.php?id_article=<?=$value['id_article']?>">Read more</a>
-<? endforeach;?>
-	
 
-</div>
+
+include('views/v_index.php');

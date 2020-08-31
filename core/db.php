@@ -10,4 +10,5 @@ function dbQuery(string $sql, array $params = []){
 	$query = $db->prepare($sql);
 	$query->execute($params);
 	return $query->fetchAll();
+
 }

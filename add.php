@@ -1,6 +1,7 @@
 <?php
 
-include_once('model/db.php');
+include_once('core/db.php');
+include_once('model/articles.php');
 
 $title = '';
 $content = '';
@@ -8,21 +9,15 @@ $content = '';
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 	$title = $_POST['title'];
 	$content = $_POST['content'];
-	$fields = ['title' => $title, 'content' => $content];
-	$sql = "INSERT INTO article (title, content) VALUES (:title, :content)";
-	dbQuery($sql, $fields);
+	$id_cat = (int)$_POST['id_cat'];
+	$fields = ['title' => $title, 'content' => $content, 'id_cat' => $id_cat];
+	//valideteArticle($fields);
+	var_dump($fields);
+	addArticle($fields);
+	
 } else {
 
 }
 
-?>
 
-
-<form action="" method="POST">
-	Title: <input type="text" name="title"><hr>
-	Content: <textarea name="content" cols="30" rows="10"></textarea><hr>
-	<button>Add article</button>
-
-</form>
-<hr>
-<a href="index.php">To main page</a>
+include('views/v_addarticle.php');

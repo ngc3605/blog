@@ -1,12 +1,10 @@
 <?php 
 
-include_once('model/db.php');
+include_once('core/db.php');
+include_once('model/articles.php');
 
 $id_article = $_GET['id_article'];
-$fields = ['id_article' => $id_article];
-$sql = "DELETE FROM article WHERE id_article=:id_article";
-
-dbQuery($sql, $fields);
+deleteArticle($id_article);
 header('Location: index.php');
 ?>
 
